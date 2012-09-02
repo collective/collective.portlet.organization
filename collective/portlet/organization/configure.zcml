@@ -5,7 +5,12 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="collective.portlet.organization">
 
-    <include package="plone.app.portlet" />
+    <include package="plone.app.portlets" />
+
+    <permission
+      id="collective.portlet.organization.AddOrganizationPortlet"
+      title="collective.portlet.organization: Add organization portlet"
+    />
 
     <genericsetup:registerProfile
        name="default"
@@ -20,7 +25,7 @@
          interface=".organizationportlet.IOrganizationPortlet"
          assignment=".organizationportlet.Assignment"
          view_permission="zope2.View"
-         edit_permission="cmf.ManagePortal"
+         edit_permission="collective.portlet.organization.AddOrganizationPortlet"
          renderer=".organizationportlet.Renderer"
          addview=".organizationportlet.AddForm"
          editview=".organizationportlet.EditForm"
