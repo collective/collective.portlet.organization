@@ -3,16 +3,14 @@ from zope.interface import implements
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
 
-# TODO: If you define any fields for the portlet configuration schema below
-# do not forget to uncomment the following import
-#from zope import schema
+from zope import schema
 from zope.formlib import form
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 # TODO: If you require i18n translation for any of your schema fields below,
 # uncomment the following to import your package MessageFactory
-#from collective.portlet.organization import OrganizationPortletMessageFactory as _
+from collective.portlet.organization import OrganizationPortletMessageFactory as _
 
 
 class IOrganizationPortlet(IPortletDataProvider):
@@ -23,14 +21,28 @@ class IOrganizationPortlet(IPortletDataProvider):
     same.
     """
 
-    # TODO: Add any zope.schema fields here to capture portlet configuration
-    # information. Alternatively, if there are no settings, leave this as an
-    # empty interface - see also notes around the add form and edit form
-    # below.
+    name = schema.TextLine(title=_(u"Name"),
+                           description=_(u"The organization name"),
+                           required=True)
+    description = schema.Text(title=_(u"Description"),
+                              description=_(u"A short description of the organization"),
+                              required=False)
 
-    # some_field = schema.TextLine(title=_(u"Some field"),
-    #                              description=_(u"A field to use"),
-    #                              required=True)
+    street = schema.TextLine(title=_(u"Address: Street"),
+                                     required=False)
+    postalcode = schema.TextLine(title=_(u"Address: Postal code"),
+                                     required=False)
+    locality = schema.TextLine(title=_(u"Address: Locality"),
+                                     required=False)
+
+    telephone = schema.TextLine(title=_(u"Telephone number"),
+                                required=False)
+    faxnumber = schema.TextLine(title=_(u"Fax number"),
+                                required=False)
+    email = schema.TextLine(title=_(u"EMail address"),
+                            required=False)
+    url = schema.URI(title=_(u"URL"),
+                     required=False)
 
 
 class Assignment(base.Assignment):
@@ -42,23 +54,42 @@ class Assignment(base.Assignment):
 
     implements(IOrganizationPortlet)
 
-    # TODO: Set default values for the configurable parameters here
+    name = u""
+    description = u""
+    street = u""
+    postalcode = u""
+    locality = u""
+    telephone = u""
+    faxnumber = u""
+    email = u""
+    url = u""
 
-    # some_field = u""
-
-    # TODO: Add keyword parameters for configurable parameters here
-    # def __init__(self, some_field=u""):
-    #    self.some_field = some_field
-
-    def __init__(self):
-        pass
+    def __init__(self,
+                 name=u"",
+                 description=u"",
+                 street=u"",
+                 postalcode=u"",
+                 locality=u"",
+                 telephone=u"",
+                 faxnumber=u"",
+                 email=u"",
+                 url=u""):
+        self.name = name
+        self.description = description
+        self.street = street
+        self.postalcode = postalcode
+        self.locality = locality
+        self.telephone = telephone
+        self.faxnumber = faxnumber
+        self.email = email
+        self.url = url
 
     @property
     def title(self):
         """This property is used to give the title of the portlet in the
         "manage portlets" screen.
         """
-        return "Organization Portlet"
+        return self.name
 
 
 class Renderer(base.Renderer):
@@ -83,21 +114,6 @@ class AddForm(base.AddForm):
 
     def create(self, data):
         return Assignment(**data)
-
-
-# NOTE: If this portlet does not have any configurable parameters, you
-# can use the next AddForm implementation instead of the previous.
-
-# class AddForm(base.NullAddForm):
-#     """Portlet add form.
-#     """
-#     def create(self):
-#         return Assignment()
-
-
-# NOTE: If this portlet does not have any configurable parameters, you
-# can remove the EditForm class definition and delete the editview
-# attribute from the <plone:portlet /> registration in configure.zcml
 
 
 class EditForm(base.EditForm):

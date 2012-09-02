@@ -1,19 +1,29 @@
-<dl class="portlet portletOrganizationPortlet"
+<dl class="portlet portletOrganizationPortlet"  itemscope itemtype="http://schema.org/Organization"
     i18n:domain="collective.portlet.organization">
 
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
-        Header
+        <span itemprop="name" tal:content="view/data/name">Organization Name</span>
         <span class="portletTopRight"></span>
     </dt>
 
-    <dd class="portletItem odd">
-        Body text
+    <dd class="portletItem">
+      <div tal:condition="view/has_address" class="oragnization-address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+        <span i18n:translate="">Main address:</span>
+        <span tal:condition="view/data/street" itemprop="streetAddress" tal:content="view/data/street"">38 avenue de l'Opera</span>
+        <span tal:condition="view/data/postalcode" itemprop="postalCode" tal:content="view/data/postalcode">F-75002</span>
+        <span tal:condition="view/data/locality" itemprop="addressLocality" tal:content="view/data/locality">Paris, France</span>
+      </div>
+      <div tal:condition="view/has_contact" class="organization-contact">
+        <span i18n:translate="" class="organization-telephone-label">Tel:</span>&nbsp;<span tal:condition="view/data/telephone" itemprop="telephone" tal:content="view/data/telephone">( 33 1) 42 68 53 00 </span>
+        <span i18n:translate="" class="organization-fax-label">Fax:</span>&nbsp;<span tal:condition="view/data/fax" itemprop="faxNumber" tal:content="view/data/fax">( 33 1) 42 68 53 01 </span>
+        <span i18n:translate="" class="organization-email-label">E-mail:</span>&nbsp;<span tal:condition="view/data/email" itemprop="email" tal:content="view/data/email">secretariat(at)google.org</span>
+      </div>
     </dd>
 
-    <dd class="portletFooter">
+    <dd class="portletFooter" tal:condition="view/data/url">
         <span class="portletBottomLeft"></span>
-        Footer
+        <span class="organization-url"><a itemprop="url" tal:attributes="href view/data/url" i18n:translate="">Website</a></span>
         <span class="portletBottomRight"></span>
     </dd>
 

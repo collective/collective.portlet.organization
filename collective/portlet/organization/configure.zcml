@@ -5,7 +5,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="collective.portlet.organization">
 
-    <five:registerPackage package="." initialize=".initialize" />
+    <include package="plone.app.portlet" />
 
     <genericsetup:registerProfile
        name="default"
@@ -14,13 +14,6 @@
        description="Portlet to display an organization"
        provides="Products.GenericSetup.interfaces.EXTENSION"
        />
-
-     <!-- Register the portlet -->
-
-     <!-- If the portlet has no configurable parameters, you can remove
-          the EditForm declaration in organizationportlet.py and delete
-          the 'editview' attribute from this statement.
-       -->
 
      <plone:portlet
          name="collective.portlet.organization.OrganizationPortlet"
