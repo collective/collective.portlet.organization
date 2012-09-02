@@ -1,4 +1,5 @@
-<dl class="portlet portletOrganizationPortlet"  itemscope itemtype="http://schema.org/Organization"
+<dl class="portlet portletOrganization"
+    itemscope itemtype="http://schema.org/Organization"
     i18n:domain="collective.portlet.organization">
 
     <dt class="portletHeader">
@@ -8,9 +9,10 @@
     </dt>
 
     <dd class="portletItem">
+      <a tal:omit-tag="not:view/data/url" tal:attributes="href view/data/url"><img class="organization-logo" tal:condition="view/data/logo" itemprop="image" tal:attributes="src view/data/logo"/></a>
       <div tal:condition="view/has_address" class="oragnization-address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
         <span i18n:translate="">Main address:</span>
-        <span tal:condition="view/data/street" itemprop="streetAddress" tal:content="view/data/street"">38 avenue de l'Opera</span>
+        <span tal:condition="view/data/street" itemprop="streetAddress" tal:content="view/data/street">38 avenue de l'Opera</span>
         <span tal:condition="view/data/postalcode" itemprop="postalCode" tal:content="view/data/postalcode">F-75002</span>
         <span tal:condition="view/data/locality" itemprop="addressLocality" tal:content="view/data/locality">Paris, France</span>
       </div>

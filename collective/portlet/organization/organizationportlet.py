@@ -43,6 +43,8 @@ class IOrganizationPortlet(IPortletDataProvider):
                             required=False)
     url = schema.URI(title=_(u"URL"),
                      required=False)
+    logo = schema.URI(title=_(u"Logo URL"),
+                      required=False)
 
 
 class Assignment(base.Assignment):
@@ -63,6 +65,7 @@ class Assignment(base.Assignment):
     faxnumber = u""
     email = u""
     url = u""
+    logo = u""
 
     def __init__(self,
                  name=u"",
@@ -73,7 +76,8 @@ class Assignment(base.Assignment):
                  telephone=u"",
                  faxnumber=u"",
                  email=u"",
-                 url=u""):
+                 url=u"",
+                 logo=u""):
         self.name = name
         self.description = description
         self.street = street
@@ -83,6 +87,7 @@ class Assignment(base.Assignment):
         self.faxnumber = faxnumber
         self.email = email
         self.url = url
+        self.logo = logo
 
     @property
     def title(self):
