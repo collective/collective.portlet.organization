@@ -107,6 +107,16 @@ class Renderer(base.Renderer):
 
     render = ViewPageTemplateFile('organizationportlet.pt')
 
+    def has_address(self):
+        return self.data.street or \
+            self.data.postalcode or \
+            self.data.locality
+
+    def has_contact(self):
+        return self.data.telephone or \
+            self.data.email or \
+            self.data.faxnumber
+
 
 class AddForm(base.AddForm):
     """Portlet add form.

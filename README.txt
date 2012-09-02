@@ -2,7 +2,7 @@ Introduction
 ============
 
 This Plone addon provides a portlet which display an organization using 
-RDFa properties to let search engine understanding it is  an organization.
+Microdata properties to let search engine understanding the content.
 
 RichSnippet orgnization: http://support.google.com/webmasters/bin/answer.py?answer=146861
 Schema.org: http://www.schema.org/Organization

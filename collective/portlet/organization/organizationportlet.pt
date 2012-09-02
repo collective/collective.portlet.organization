@@ -4,21 +4,25 @@
 
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
-        <span itemprop="name" tal:content="view/data/name">Organization Name</span>
+        <span itemprop="name" tal:content="view/data/name">Makina Corpus</span>
         <span class="portletTopRight"></span>
     </dt>
 
+    <dd class="portletItem" tal:condition="view/data/logo">
+      <a tal:omit-tag="not:view/data/url" tal:attributes="href view/data/url"><img class="organization-logo" itemprop="image" tal:attributes="src view/data/logo"/></a>
+    </dd>
     <dd class="portletItem">
-      <a tal:omit-tag="not:view/data/url" tal:attributes="href view/data/url"><img class="organization-logo" tal:condition="view/data/logo" itemprop="image" tal:attributes="src view/data/logo"/></a>
       <div tal:condition="view/has_address" class="oragnization-address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
         <span i18n:translate="">Main address:</span>
-        <span tal:condition="view/data/street" itemprop="streetAddress" tal:content="view/data/street">38 avenue de l'Opera</span>
-        <span tal:condition="view/data/postalcode" itemprop="postalCode" tal:content="view/data/postalcode">F-75002</span>
-        <span tal:condition="view/data/locality" itemprop="addressLocality" tal:content="view/data/locality">Paris, France</span>
+        <span tal:condition="view/data/street" itemprop="streetAddress" tal:content="view/data/street">29 quai de versaille</span>
+        <span tal:condition="view/data/postalcode" itemprop="postalCode" tal:content="view/data/postalcode">44000</span>
+        <span tal:condition="view/data/locality" itemprop="addressLocality" tal:content="view/data/locality">Nantes, France</span>
       </div>
+    </dd>
+    <dd class="portletItem">
       <div tal:condition="view/has_contact" class="organization-contact">
         <span i18n:translate="" class="organization-telephone-label">Tel:</span>&nbsp;<span tal:condition="view/data/telephone" itemprop="telephone" tal:content="view/data/telephone">( 33 1) 42 68 53 00 </span>
-        <span i18n:translate="" class="organization-fax-label">Fax:</span>&nbsp;<span tal:condition="view/data/fax" itemprop="faxNumber" tal:content="view/data/fax">( 33 1) 42 68 53 01 </span>
+        <span i18n:translate="" class="organization-fax-label">Fax:</span>&nbsp;<span tal:condition="view/data/faxnumber" itemprop="faxNumber" tal:content="view/data/faxnumber">( 33 1) 42 68 53 01 </span>
         <span i18n:translate="" class="organization-email-label">E-mail:</span>&nbsp;<span tal:condition="view/data/email" itemprop="email" tal:content="view/data/email">secretariat(at)google.org</span>
       </div>
     </dd>
